@@ -1,31 +1,47 @@
 #include "main.h"
 
-char *custom_strtok(char *str, const char *delimiters) {
-    static char *lastToken = NULL;
-    char *token;
+/**
+ * custom_strtok - strtok function
+ * @str: string to split
+ * @delimiters: pointer
+ *
+ * Return: token
+ */
 
-    if (str != NULL) {
-        lastToken = str;
-    }
+char *custom_strtok(char *str, const char *delimiters)
+{
+	static char *lastToken;
+	char *token;
 
-    while (*lastToken != '\0' && strchr(delimiters, *lastToken) != NULL) {
-        lastToken++;
-    }
+	lastToken = NULL;
 
-    if (*lastToken == '\0') {
-        return NULL;
-    }
+	if (str != NULL)
+	{
+		lastToken = str;
+	}
 
-    token = lastToken;
+	while (*lastToken != '\0' && strchr(delimiters, *lastToken) != NULL)
+	{
+		lastToken++;
+	}
 
-    while (*lastToken != '\0' && strchr(delimiters, *lastToken) == NULL) {
-        lastToken++;
-    }
+	if (*lastToken == '\0')
+	{
+		return (NULL);
+	}
 
-    if (*lastToken != '\0') {
-        *lastToken = '\0';
-        lastToken++;
-    }
+	token = lastToken;
 
-    return token;
+	while (*lastToken != '\0' && strchr(delimiters, *lastToken) == NULL)
+	{
+		lastToken++;
+	}
+
+	if (*lastToken != '\0')
+	{
+		*lastToken = '\0';
+		lastToken++;
+	}
+
+	return (token);
 }
