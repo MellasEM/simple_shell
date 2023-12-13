@@ -1,31 +1,45 @@
 #include "main.h"
 
-int main(int argc, char *argv[]) {
-    char *buffer = NULL;
-    int i;
+/**
+ * main  - main entry
+ * @argc: number of arguments
+ * @argv: arguments
+ *
+ * Return: 0 Always
+ */
 
-    if (argc > 1) {
-        for (i = 1; i < argc; i++) {
-            execute_command(argv[i]);
-        }
-    } else {
-        while (1) {
-            write(STDOUT_FILENO, PROMPT, strlen(PROMPT));
+int main(int argc, char *argv[])
+{
+	char *buffer = NULL;
+	int i;
 
-            buffer = custom_getline();
+	if (argc > 1)
+	{
+		for (i = 1; i < argc; i++)
+		{
+		execute_command(argv[i]);
+		}
+	} else
+	{
+		while (1)
+		{
+			write(STDOUT_FILENO, PROMPT, strlen(PROMPT));
 
-            if (buffer == NULL) {
-                printf("\n");
-                break;
-            }
+			buffer = custom_getline();
 
-            if (buffer[0] != '\0') {
-                execute_command(buffer);
-            }
+			if (buffer == NULL)
+			{
+				printf("\n");
+				break;
+			}
 
-            free(buffer);
-        }
-    }
+			if (buffer[0] != '\0')
+			{
+				execute_command(buffer);
+			}
 
-    return 0;
+			free(buffer);
+		}
+	}
+	return (0);
 }
